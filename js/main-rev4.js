@@ -1,3 +1,5 @@
+console.log('connected');
+
 
 
 
@@ -52,16 +54,18 @@ function handleInputSubmit() {
   function proceed() {
     let canvas = document.createElement('canvas');
     let ctx = canvas.getContext('2d');
-    let rValue = [];
+    let rValue = []; // make an array and average out the color after
     let gValue = [];
     let bValue = [];
-    let sampleSize = 40;
+    let sampleSize = 20;
     ctx.canvas.width = img.naturalWidth;
     ctx.canvas.height = img.naturalHeight;
     ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
+    //console.log('another way to get image height' + img.height);
 
-    // get random pixels from canvas, number of pixels is based on sampleSize var
     for (let i = 0; i < sampleSize; i++) {
+      // get random numbers within canvas size
+
       let xPos = Math.floor(Math.random() * img.naturalWidth);
       let yPos = Math.floor(Math.random() * img.naturalHeight);
       let pixelData = ctx.getImageData(xPos, yPos, xPos+1, yPos+1);
@@ -70,40 +74,97 @@ function handleInputSubmit() {
       bValue.push(pixelData.data[2]);
     }
 
-    // reduce to an average for red, blue, green
+    // reduce to an average for each color
     rValue = Math.floor(rValue.reduce((acc, val) => acc + val) / rValue.length);
     gValue = Math.floor(gValue.reduce((acc, val) => acc + val) / gValue.length);
     bValue = Math.floor(bValue.reduce((acc, val) => acc + val) / bValue.length);
 
 
+    //console.log('r value after loop is: ' + rValue);
+    //console.log('g value after loop is: ' + gValue);
+    //console.log('b value after loop is: ' + bValue);
+
     let returnRGB = 'rgb(' + rValue.toString() + ', ' + gValue.toString() + ', ' + bValue.toString() + ')';
     // set text color based on the resulting RGB value
     let text = document.createElement('span');
     text.innerHTML = returnRGB;
+    resultText.appendChild(text)
 
-    // now that calculation is done repaint canvas with new color
-    canvas.classList.add('obj');
-    ctx.beginPath();
-    ctx.fillStyle = returnRGB;
-    ctx.rect(0, 0, img.naturalWidth, img.naturalHeight);
-    ctx.fill();
+    /*
+    // https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+    function componentToHex(c) {
+      var hex = c.toString(16);
+      return hex.length == 1 ? "0" + hex : hex;
+    }
 
-    // append result, preview, and resultText to DOM
+    function rgbToHex(r, g, b) {
+      return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+    }
+
+    alert(rgbToHex(0, 51, 255)); // #0033ff
+    */
+
+    // log resulting RGB value to console
+    //console.log(returnRGB);
+
+    // return a canvas with background color
+    let returnCanvas = document.createElement('canvas');
+    returnCanvas.classList.add('obj');
+    let returnCtx = returnCanvas.getContext('2d');
+    returnCtx.canvas.width = img.naturalWidth;
+    returnCtx.canvas.height = img.naturalHeight;
+    returnCtx.beginPath();
+    returnCtx.fillStyle = returnRGB;
+    returnCtx.rect(0, 0, img.naturalWidth, img.naturalHeight);
+    returnCtx.fill();
+
+
+    result.appendChild(returnCanvas);
     preview.appendChild(img);
-    result.appendChild(canvas);
-    resultText.appendChild(text);
+
+
   }
 
 
-  // create an interval and wait for FileReader to apply src to the img element
+
+
+  //console.log('papa1' + img.naturalHeight);
+
   var checkIfImgSrcSet = setInterval(function() {
+    // had to add img.naturalHeight != 0 to get it to work
     if (img.src && img.naturalHeight != 0) {
       console.log('image source is set, continuing with rest of program');
       clearInterval(checkIfImgSrcSet);
       proceed();
+      // when used here img.naturalHeight is available
+      // just have to wait for image src to be loaded
+      console.log('papa2' + img.naturalHeight);
     } else {
       console.log('image source not set yet');
     }
-  }, 10);
+  }, 5);
+
+
+
+
+
+
+
+
+
+
+
+
+
+  function calculateColor() {
+
+  }
+
+  /*
+  the process
+  on file submit run function
+
+  */
+
 
 }
