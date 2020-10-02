@@ -3,9 +3,6 @@
 
 <head>
   <title>BG Color Picker</title>
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
   <link rel="stylesheet" href="style/style.css">
 </head>
 
@@ -13,41 +10,16 @@
 
   <h1>Background Color Picker</h1>
 
-<!--
-  <div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">@</span>
-  </div>
-  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-</div>
-
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-  <div class="input-group-append">
-    <span class="input-group-text" id="basic-addon2">@example.com</span>
-  </div>
-</div>
--->
-
-<!--
-<div class="custom-file">
-  <input type="file" class="custom-file-input" id="image-input" onchange="handleInputSubmit()">
-  <label class="custom-file-label" for="image-input">Choose file</label>
-</div>
--->
-
-
   <div class="controls">
-    <input id="image-input" class="" type="file" onchange="handleInputSubmit()">
+    <label for="image-input" class="custom-file-upload">Browse Files</label>
+    <input id="image-input" type="file" onchange="handleInputSubmit()">
   </div>
+
   <div class="main">
     <div id="preview"></div>
     <div id="result"></div>
   </div>
   <div id="result-text"></div>
-
-
-
 
   <script src="js/main.js"></script>
 
