@@ -4,6 +4,7 @@
 
 // this is the js to get an image and display it to a div
 function handleInputSubmit() {
+  console.log('file submitted');
 
   // grab the file from the input
   let file = document.getElementById('image-input').files[0];
@@ -51,7 +52,7 @@ function handleInputSubmit() {
     let rValue = [];
     let gValue = [];
     let bValue = [];
-    let sampleSize = 50;
+    let sampleSize = 40;
     ctx.canvas.width = img.naturalWidth;
     ctx.canvas.height = img.naturalHeight;
     ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
