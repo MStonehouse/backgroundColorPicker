@@ -17,7 +17,7 @@ h1 {
 
 p {
   max-width: 600px;
-  margin: 0 auto;
+  margin: 16px auto;
   text-align: center;
   font-size: 1.1rem;
 }
@@ -69,5 +69,6 @@ p {
 }
 
 #result-text p {
+  margin: 0 auto;
   font-size: 1.2rem;
 }
