@@ -15,6 +15,13 @@ h1 {
   font-weight: 300;
 }
 
+p {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
 .main {
   display: flex;
   justify-content: center;
@@ -62,6 +69,5 @@ h1 {
 }
 
 #result-text p {
-  margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
