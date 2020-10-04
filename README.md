@@ -1,3 +1,3 @@
 # Background Color Picker
 
-Program to pick an appropriate background color for an image 
+A simple program to help pick an appropriate background color for an HTML image
