@@ -1,7 +1,3 @@
-
-
-
-
 function handleImageSubmit(event) {
   let file = event.target.files[0];
 

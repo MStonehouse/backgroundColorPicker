@@ -37,15 +37,6 @@ p {
   text-align: center;
 }
 
-/*
-.obj {
-  max-width: 300px;
-  height: auto;
-  border: 1px solid grey;
-  margin: 16px;
-}
-*/
-
 .main-container img, .main-container canvas {
   max-width: 300px;
   height: auto;
