@@ -3,20 +3,20 @@ function handleImageSubmit(event) {
 
   if (!file.type.startsWith('image/')) {return alert('file type is not an image')};
 
-  var img = document.createElement('img');
-  var reader = new FileReader();
+  let img = document.createElement('img');
+  let reader = new FileReader();
   reader.onload = function(e) {img.src = e.target.result;}
   reader.readAsDataURL(file);
 
   function proceed(width, height) {
-    var preview = document.getElementById('preview'); // get node for preview image
-    var result = document.getElementById('result'); // get node for result canvas
-    var resultText = document.getElementById('result-text'); // get node for result text
-    var canvas = document.createElement('canvas');
-    var ctx = canvas.getContext('2d');
-    var rgb; // object for rgb values
-    var rgbString; // rgb return string
-    var hexString; // hex return string
+    let preview = document.getElementById('preview'); // get node for preview image
+    let result = document.getElementById('result'); // get node for result canvas
+    let resultText = document.getElementById('result-text'); // get node for result text
+    let canvas = document.createElement('canvas');
+    let ctx = canvas.getContext('2d');
+    let rgb; // object for rgb values
+    let rgbString; // rgb return string
+    let hexString; // hex return string
     let sampleSize = 50; // number of pixels to sample
 
     function clearNodes(...params) {
@@ -43,7 +43,7 @@ function handleImageSubmit(event) {
     }
 
     function rgbToHex(value) {
-      var hex = value.toString(16);
+      let hex = value.toString(16);
       return hex.length == 1 ? "0" + hex : hex;
     }
 
@@ -77,8 +77,8 @@ function handleImageSubmit(event) {
     clearNodes(preview, result, resultText);
 
     // make <p> elements to attach to resultText div
-    var rgbText = document.createElement('p');
-    var hexText = document.createElement('p');
+    let rgbText = document.createElement('p');
+    let hexText = document.createElement('p');
     rgbText.innerHTML = rgbString;
     hexText.innerHTML = hexString;
 
@@ -91,8 +91,8 @@ function handleImageSubmit(event) {
 
 
 
-  // set interval to check if file source has been attached to img variable yet
-  var checkIfImgSrcSet = setInterval(function() {
+  // set interval to check if file source has been attached to img letiable yet
+  let checkIfImgSrcSet = setInterval(function() {
     if (img.src && img.naturalHeight) {
       console.log('image source is set, continuing with rest of program');
       clearInterval(checkIfImgSrcSet);
