@@ -7,6 +7,13 @@ function handleImageSubmit(event) {
   let reader = new FileReader();
   reader.onload = function(e) {img.src = e.target.result;}
   reader.readAsDataURL(file);
+  function onImageLoad() {
+    img.removeEventListener('loadend', onImageLoad);
+    proceed(img.naturalWidth, img.naturalHeight);
+  };
+  img.addEventListener('loadend', onImageLoad);
+
+
 
   function proceed(width, height) {
     let preview = document.getElementById('preview'); // get node for preview image
@@ -88,18 +95,4 @@ function handleImageSubmit(event) {
     resultText.appendChild(rgbText);
     resultText.appendChild(hexText);
   }
-
-
-
-  // set interval to check if file source has been attached to img letiable yet
-  let checkIfImgSrcSet = setInterval(function() {
-    if (img.src && img.naturalHeight) {
-      console.log('image source is set, continuing with rest of program');
-      clearInterval(checkIfImgSrcSet);
-      proceed(img.naturalWidth, img.naturalHeight);
-    } else {
-      console.log('image source not set yet');
-    }
-  }, 10);
-
 }
